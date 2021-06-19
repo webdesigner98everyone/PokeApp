@@ -41,7 +41,7 @@ export default function App() {
     setFavorites(pokemons);
   };
 
-  // colcoamos se ejecuta este fracmento de codigo la primera que renderizamos
+  // se ejecuta este fracmento de codigo la primera que renderizamos
   useEffect(() => {
     loadFavoritePokemons();
   }, []);
