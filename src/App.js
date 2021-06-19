@@ -7,6 +7,7 @@ import { getPokemonData, getPokemons, searchPokemon } from "../api";
 import { FavoriteProvider } from "../contexts/favoritesContext";
 
 const { useState, useEffect } = React;
+
 const localStorageKey = "favorite_pokemon";
 
 export default function App() {
@@ -18,19 +19,17 @@ export default function App() {
   const [notFound, setNotFound] = useState(false);
   const [searching, setSearching] = useState(false);
 
-  // este fracmento va de la mano con la asignacion de cantidad de pokemones que quiero ver en pantalla que estipulamos en api.js
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      // quiero mostrar 16 pokemonos por pagina
-      const data = await getPokemons(15, 15 * page);
+      const data = await getPokemons(25, 25 * page);
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
       const results = await Promise.all(promises);
       setPokemons(results);
       setLoading(false);
-      setTotal(Math.ceil(data.count / 15));
+      setTotal(Math.ceil(data.count / 25));
       setNotFound(false);
     } catch (err) {}
   };
@@ -41,7 +40,6 @@ export default function App() {
     setFavorites(pokemons);
   };
 
-  // colcoamos se ejecuta este fracmento de codigo la primera que renderizamos
   useEffect(() => {
     loadFavoritePokemons();
   }, []);
@@ -97,7 +95,9 @@ export default function App() {
         <div className="App">
           <Searchbar onSearch={onSearch} />
           {notFound ? (
-            <div className="not-found-text">No existe pokemon</div>
+            <div className="not-found-text">
+              No se encontro el Pokemon que buscabas 😭
+            </div>
           ) : (
             <Pokedex
               loading={loading}

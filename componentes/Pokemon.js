@@ -17,7 +17,6 @@ const Pokemon = (props) => {
   };
 
   return (
-    // la idea es que en este fracmento se muestra la info del pokemon en las columnas de manera ordenada
     <div className="pokemon-card">
       <div className="pokemon-img-container">
         <img
@@ -28,13 +27,10 @@ const Pokemon = (props) => {
       </div>
       <div className="card-body">
         <div className="card-top">
-          {/* id del pokemon */}
-          <div>Id Pokemon: {pokemon.id}</div>
-          {/* nombre del pokemon */}
-          <h3>Nombre: {pokemon.name}</h3>
+          <h3>{pokemon.name}</h3>
+          <div>#{pokemon.id}</div>
         </div>
         <div className="card-bottom">
-          {/* tipo del pokemon */}
           <div className="pokemon-type">
             {pokemon.types.map((type, idx) => {
               return (
@@ -44,6 +40,9 @@ const Pokemon = (props) => {
               );
             })}
           </div>
+          <button onClick={clickHeart} className="pokemon-heart-btn">
+            <div className="pokemon-favorite">{heart}</div>
+          </button>
         </div>
       </div>
     </div>
