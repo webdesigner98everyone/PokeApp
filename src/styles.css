@@ -99,3 +99,8 @@ nav {
   align-items: center;
   justify-content: center;
 }
+
+/* estilo nombre pokemon primera en mayuscula */
+.card-top h3 {
+  text-transform: capitalize;
+}

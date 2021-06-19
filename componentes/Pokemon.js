@@ -27,10 +27,13 @@ const Pokemon = (props) => {
       </div>
       <div className="card-body">
         <div className="card-top">
+          {/* id pokemon */}
+          <div>Id: {pokemon.id}</div>
+          {/* Nombre Pokemon */}
           <h3>{pokemon.name}</h3>
-          <div>#{pokemon.id}</div>
         </div>
         <div className="card-bottom">
+          {/* tipo pokemon */}
           <div className="pokemon-type">
             {pokemon.types.map((type, idx) => {
               return (
